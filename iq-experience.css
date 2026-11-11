@@ -1,0 +1,59 @@
+/* Full-window learner journey; does not alter the flashcard engine. */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap');
+:root{--iq-readable:#183c33}
+.iq-hero,.iq-prayer,.iq-about-page{overflow-wrap:break-word}
+.iq-prayer{max-width:1000px}
+.iq-prayer>p:not(.iq-urdu-prayer):not(.iq-arabic-prayer):not(.iq-prayer-small){font-size:clamp(17px,1.5vw,19px);line-height:1.95;max-width:860px;margin:18px auto;color:var(--iq-readable)}
+.iq-prayer>.iq-urdu-prayer{font-family:'Noto Nastaliq Urdu','Noto Naskh Arabic',serif!important;font-size:clamp(22px,2.15vw,27px)!important;font-weight:500;line-height:2.75!important;max-width:860px;margin:22px auto!important;text-align:right;direction:rtl;unicode-bidi:plaintext}
+.iq-prayer>.iq-arabic-prayer,.iq-bismillah,.iq-durood{font-family:'Noto Naskh Arabic','Amiri Quran',serif!important;line-height:2.1}
+.iq-prayer h2,.iq-prayer h3{overflow-wrap:break-word}
+.iq-urdu-label,.para-word{font-family:'Noto Nastaliq Urdu','Noto Naskh Arabic',serif!important;line-height:2.1!important}
+/* Distinct choice buttons, designed to be accessible with keyboard and touch. */
+.iq-learning-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:26px auto 16px;max-width:850px}
+.iq-learning-mode{display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;border:1px solid #ccdfd4;border-radius:17px;background:#fff;color:#173d34;padding:20px 16px;cursor:pointer;font:inherit}
+.iq-learning-mode strong{font-size:18px}.iq-learning-mode small{font-size:12px;line-height:1.5;color:#526e61}
+.iq-learning-mode.is-active{background:#e5f5e9;border:2px solid #098b76}
+.iq-language-picker{max-width:850px;margin:20px auto 26px;text-align:center}.iq-language-picker .eyebrow{margin:0 0 12px}
+.iq-language-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.iq-lang-btn{font:700 15px/1.4 'DM Sans',sans-serif;color:#153e34;background:#fff;border:1px solid #c7dfd1;border-radius:13px;padding:16px 12px;cursor:pointer;min-height:56px}
+.iq-lang-btn.is-active{background:#164738;color:white;border-color:#164738;box-shadow:0 2px 0 #9bbfb0}
+.iq-lang-btn:focus-visible,.iq-learning-mode:focus-visible,.iq-practice-top button:focus-visible{outline:3px solid #e9a949;outline-offset:3px}
+/* Remove the original split view from the learning journey. */
+body.iq-stage-selection #workspace{display:none!important}
+body.iq-stage-groups #learn,body.iq-stage-practice #learn{display:none!important}
+body.iq-stage-groups #workspace,body.iq-stage-practice #workspace{display:block}
+#workspace{scroll-margin-top:20px;padding-block:48px 72px}
+#workspace>.shell{max-width:1200px;width:calc(100% - 36px)}
+#workspace .workspace-grid{display:block!important;max-width:1120px;margin:25px auto 0}
+#workspace .settings-card,#workspace .preview-panel{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+body.iq-stage-groups #previewPanel,body.iq-stage-practice .settings-card{display:none!important}
+body.iq-stage-groups .settings-card{padding:clamp(22px,4vw,48px)}
+body.iq-stage-practice .preview-panel{padding:clamp(18px,3vw,38px)}
+body.iq-stage-practice #workspace .section-head p:last-child{display:none}
+.iq-stage-top{display:flex;justify-content:flex-start;max-width:1120px;margin:0 auto}
+body.iq-stage-practice .iq-stage-top{display:none}
+.iq-practice-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 26px;flex-wrap:wrap}
+.iq-restart-safe{border-color:#c4b9a8!important;color:#74513c!important;background:transparent!important;opacity:.86;font-size:13px!important}
+.iq-restart-safe:hover{opacity:1;background:#fff5ee!important}
+#restartBtn{display:none!important}
+body.iq-stage-practice .question-text{font-family:'DM Sans','Noto Naskh Arabic',sans-serif;font-size:clamp(23px,2.6vw,34px);line-height:1.9;overflow-wrap:anywhere;unicode-bidi:plaintext}
+body.iq-stage-practice .question-text:has(*){line-height:1.8}
+body.iq-stage-practice .options-list .option,body.iq-stage-practice .answer-value{font-family:'DM Sans','Noto Nastaliq Urdu','Noto Naskh Arabic',sans-serif;font-size:clamp(17px,1.65vw,22px);line-height:2.1;overflow-wrap:anywhere;white-space:normal;text-align:start}
+body.iq-stage-practice .answer-value{line-height:2.25}
+body.iq-stage-practice .flip-card{min-height:320px}
+body.iq-stage-practice .study-toolbar{max-width:100%}
+body.dark .iq-learning-mode,body.dark .iq-lang-btn:not(.is-active){background:#1d3e32;color:#e9f5ed;border-color:#557765}
+body.dark .iq-learning-mode small{color:#bfd9ca}
+body.dark .iq-learning-mode.is-active{background:#245441}
+body.dark .iq-prayer>p:not(.iq-urdu-prayer):not(.iq-arabic-prayer):not(.iq-prayer-small){color:#e8f3ea}
+body.dark .iq-restart-safe{color:#f4cfb0!important}
+@media(max-width:700px){.iq-learning-modes{grid-template-columns:1fr}.iq-language-buttons{grid-template-columns:1fr}.iq-practice-top{flex-direction:column;align-items:stretch}.iq-practice-top button{width:100%}.iq-prayer>.iq-urdu-prayer{font-size:21px!important;line-height:2.8!important}.iq-prayer>p:not(.iq-urdu-prayer):not(.iq-arabic-prayer):not(.iq-prayer-small){font-size:17px}.iq-stage-groups #workspace .settings-card,.iq-stage-practice #workspace .preview-panel{padding:18px}}
+/* The site-specific nav must respect the original mobile-menu collapse rule. */
+@media(max-width:980px){
+  .iq-header{grid-template-columns:minmax(0,1fr) auto;gap:12px}
+  .iq-header .mobile-menu{grid-column:2;display:block;justify-self:end}
+  .iq-nav{display:none!important;position:absolute;top:calc(100% + 8px);left:0;right:0;grid-column:auto;z-index:30;padding:18px;background:var(--panel);box-shadow:var(--shadow);border:1px solid var(--border);border-radius:18px;flex-direction:column;align-items:stretch}
+  .iq-nav.open{display:flex!important}
+  .iq-nav .theme-button{position:static;transform:none;width:100%}
+}
+@media(max-width:480px){.iq-header .brand-txt small{font-size:10px;letter-spacing:.06em}.iq-header .brand-txt strong{font-size:20px}.iq-header .brand-logo{width:38px;height:38px;font-size:22px}.iq-hero .eyebrow{font-size:11px}}

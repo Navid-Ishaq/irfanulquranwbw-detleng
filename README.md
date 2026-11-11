@@ -1,57 +1,68 @@
-# Irfan-ul-Quran — Word-by-Word Learning
+# Irfan-ul-Quran — Verse-by-Verse Learning
 
-An independent educational initiative by DeTLeng.
+An independent Qur'anic educational initiative by DeTLeng. Learners study the meaning of each complete Ayat through the Irfan-ul-Quran translations, with MCQs and classic flashcards.
 
-## Structure
+## What's active
 
-- `index.html`: Home, Learn & Practice, complete dedication and prayer, flashcard workspace
-- `about.html`: About Irfan-ul-Quran (text supplied by the project owner; no scholar photograph)
-- `app.js`: original DeTLeng Flashcard engine, unchanged
-- `irfan-paras.js`: new Para / quarter modal and automatic DOCX selector
-- `styles.css`: working presentation styles derived from the Understand Quran reference
-- `irfan.css`: new Irfan-ul-Quran visual design
-- `vendor/jszip.min.js`: original DOCX library, unchanged
-- `data/docx/`: add your 120 vocabulary DOCX documents here
-- `CNAME`: irfanulquranwbw.detleng.com
+- **Verse by Verse:** active. Choose one of **Urdu + English**, **Urdu Only**, **English Only**, then one of 30 Paras and four learning sections.
+- **Word by Word:** future project with a *Coming in a Future Update, Insha Allah* notice. The old `data/docx/` sample is retained only as legacy material, not the active learning source.
+- **Four focused views:** Para selection → quarter modal → full-width question-group selection → full-width practice.
+- **Practice:** original MCQ / Classic Flashcard / Learning / Test scoring, question groups, saved in-page attempts, navigation and exports remain in `app.js`.
+- **Safe restart:** separate top control asks for confirmation. Back to Question Groups returns to the range chooser.
+- **Dedication & Dua:** link in top navigation jumps to the complete existing dedication on Home.
 
-## DOCX file naming
+## File placement — 360 documents, exact names
 
-30 Paras × 4 quarters = 120 expected files. Each individual file is named `IQ-Para-PP-QQ.docx` (two-digit Para and quarter values).
+Put the Word files directly in these folders. **Do not rename them**:
 
-Examples:
-- `data/docx/IQ-Para-01-01.docx` — Para 01, first quarter (sample provided)
-- `data/docx/IQ-Para-01-02.docx` — Para 01, second quarter
-- `data/docx/IQ-Para-15-03.docx` — Para 15, third quarter
-- `data/docx/IQ-Para-30-04.docx` — Para 30, fourth quarter
+| Button | Folder | Example |
+| --- | --- | --- |
+| Urdu + English | `data/verse-bilingual/` | `IQV-Para-01-01.docx` |
+| Urdu Only | `data/verse-urdu/` | `UR-IQV-Para-01-01.docx` |
+| English Only | `data/verse-english/` | `EN-IQV-Para-01-01.docx` |
 
-**Put the remaining 119 files directly inside `data/docx/`.** There are no translation-language tabs. Each answer contains both Urdu and English. The original DOCX files are not rewritten or converted. For missing or empty/template-only files the interface shows "Coming Soon, Insha Allah!" Valid DOCX files use the existing `handleFile(file)` pathway.
+Each collection contains **30 Paras × 4 sections = 120 files** when complete. This ZIP includes the owner-supplied **01-01 sample in each folder**. The owner will add the remaining 357 DOCX files later. Missing or empty files show a *Coming Soon* notice, never fictional questions.
 
-## Testing locally
+The DOCX format is a 3-column table: **S. No. | Code – Arabic Ayat | Translation & Notes**. Each verse is one row. The original `parseDocx` and `handleFile(file)` are used without changing `app.js`.
 
-Opening `index.html` directly with `file://` may block fetch requests. Run a simple local HTTP server instead:
+Run `python tools/verify_files.py` to see how many files are in place. The three sample documents each contain 53 numbered entries.
+
+## Main files
+
+- `index.html`, `about.html`: pages and content
+- `styles.css`, `irfan.css`: existing styles
+- `iq-experience.css`: new typography, mobile header and full-window practice styles
+- `irfan-paras.js`: Para, quarter and 3-language folder loader
+- `iq-experience.js`: view transitions, safe Restart confirmation, back navigation
+- `app.js`: **original engine, byte-for-byte unchanged**
+- `vendor/jszip.min.js`: original ZIP/DOCX library unchanged
+- `CNAME`: existing domain configuration unchanged
+
+## Run locally
+
+Because document loading uses `fetch`, don't open `index.html` directly as a `file://` page. From Windows PowerShell:
 
 ```powershell
 cd D:\DETLENG2\irfanulquranwbw-detleng
 python -m http.server 8000
 ```
 
-Then open `http://localhost:8000/` and choose **Learn & Practice** → **Para 01** → **First Quarter**. Use question range / MCQ / Classic / Learning / Test and the export tools. Missing files should show Coming Soon.
+Then browse to `http://localhost:8000/` and test Para 01 / First Quarter in all 3 translation modes. Check MCQ, Classic, Learning/Test, Restart Cancel, return to groups, and mobile navigation.
 
-## Deployment
+## Copy into existing Git working directory
 
-The GitHub repository `Navid-Ishaq/irfanulquranwbw-detleng` has its own existing history. **Do not use `git init` inside an unrelated copy and force push.** Prefer cloning the repository and copying these files into that clone:
+**Do not delete the `.git` directory.** Extract the ZIP and copy the **contents** of the included `irfanulquranwbw-detleng` folder over your existing `D:\DETLENG2\irfanulquranwbw-detleng` project folder. Add remaining DOCX files to the three specified folders. Once verified locally:
 
 ```powershell
-git clone https://github.com/Navid-Ishaq/irfanulquranwbw-detleng.git
-cd irfanulquranwbw-detleng
-# Copy the contents of this ZIP folder into this cloned folder, replacing CNAME/README as needed.
+cd D:\DETLENG2\irfanulquranwbw-detleng
+git status
 git add .
-git commit -m "Launch Irfan-ul-Quran Word-by-Word Learning"
+git commit -m "Launch Verse-by-Verse learning and focused practice UI"
 git push origin main
 ```
 
-Set GitHub Pages to `main` branch, `/ (root)` and confirm DNS / HTTPS for `irfanulquranwbw.detleng.com`. Do not modify the original Flashcard or Understand Quran repositories.
+GitHub Pages remains attached to the existing repository and domain. Don't use `git init` or `git push --force`.
 
 ## Editorial and permissions
 
-The website About and prayer content come from the supplied Word documents. The long dedication is kept on the Home page. No scholar photograph is embedded. Public redistribution/adaptation of the Irfan-ul-Quran translations requires appropriate permission from the rights holder; attribution alone does not grant rights. The project must not be described as officially endorsed unless authorised. The Word-by-Word vocabulary segmentation is a learning aid, not a replacement for whole-verse translation.
+The site retains the supplied dedication, dua, About information and attribution. Irfan-ul-Quran translations belong to their respective rights holder(s); public redistribution or adaptation requires appropriate permission. This is an independent educational initiative and should not be described as officially endorsed unless authorized.

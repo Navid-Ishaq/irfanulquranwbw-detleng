@@ -18,7 +18,14 @@
   let requestId = 0;
   let lastFocus = null;
   const pad = n => String(n).padStart(2, '0');
-  const filename = (p, q) => `IQ-Para-${pad(p)}-${pad(q)}.docx`;
+  let selectedLanguage = 'bilingual';
+  const languages = {
+    bilingual: {label:'Urdu + English',folder:'verse-bilingual',prefix:'IQV'},
+    urdu: {label:'Urdu Only',folder:'verse-urdu',prefix:'UR-IQV'},
+    english: {label:'English Only',folder:'verse-english',prefix:'EN-IQV'}
+  };
+  const filename = (p,q) => `${languages[selectedLanguage].prefix}-Para-${pad(p)}-${pad(q)}.docx`;
+  window.iqCurrentLanguage = () => selectedLanguage;
 
   function renderParaGrid() {
     const frag = document.createDocumentFragment();
@@ -88,13 +95,14 @@
   async function loadQuarter() {
     const p = selectedPara, q = selectedQuarter;
     const fileName = filename(p, q);
+    const currentLanguage = selectedLanguage;
     const request = ++requestId;
     const button = $('continueLearning');
     button.disabled = true;
     button.textContent = 'Loading section…';
     $('quarterStatus').textContent = `Opening ${fileName}…`;
     try {
-      const response = await fetch(`data/docx/${fileName}`, {cache: 'no-cache'});
+      const response = await fetch(`data/${languages[currentLanguage].folder}/${fileName}`, {cache: 'no-cache'});
       if (!response.ok) {
         if (response.status === 404) throw new Error('not-ready');
         throw new Error(`The file could not be downloaded (HTTP ${response.status}).`);
@@ -118,7 +126,8 @@
       await handleFile(file);
       if (request !== requestId) return;
       if ($('fileSummary').classList.contains('hidden')) throw new Error('The Word document could not be opened.');
-      $('selectedParaLabel').textContent = `Para ${pad(p)} · ${quarterLabels[q - 1][0]} · Urdu + English`;
+      $('selectedParaLabel').textContent = `Para ${pad(p)} · ${quarterLabels[q - 1][0]} · ${languages[currentLanguage].label}`;
+      window.dispatchEvent(new CustomEvent('iq:section-loaded',{detail:{para:p,quarter:q,language:currentLanguage}}));
       grid.querySelectorAll('.para-card').forEach(x => x.classList.toggle('selected', Number(x.dataset.para) === p));
       notice.textContent = `Para ${pad(p)}, ${quarterLabels[q - 1][0]} is ready. Choose a question range or group below.`;
       closeQuarter();
@@ -139,6 +148,22 @@
       }
     }
   }
+  document.querySelectorAll('[data-language]').forEach(button => button.addEventListener('click', () => {
+    if (selectedLanguage === button.dataset.language) return;
+    selectedLanguage = button.dataset.language;
+    requestId++;
+    document.querySelectorAll('[data-language]').forEach(b=>{
+      const active=b.dataset.language===selectedLanguage;
+      b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));
+    });
+    notice.textContent = `${languages[selectedLanguage].label} selected. Choose a Para and learning section.`;
+    if (modal.open) syncQuarterSelection();
+    window.dispatchEvent(new CustomEvent('iq:language-changed',{detail:{language:selectedLanguage}}));
+  }));
+  $('wordFutureBtn').addEventListener('click',()=>{
+    showComingSoon('Our Word-by-Word Qur’anic vocabulary learning experience is planned for a future phase. For now, explore Verse-by-Verse learning and strengthen your understanding of the Holy Qur’an, one Ayat at a time.');
+  });
+  $('verseModeBtn').addEventListener('click',()=>document.querySelector('.iq-language-picker').scrollIntoView({behavior:'smooth',block:'center'}));
   $('closeQuarter').addEventListener('click', closeQuarter);
   modal.addEventListener('click', e => { if (e.target === modal) closeQuarter(); });
   $('continueLearning').addEventListener('click', loadQuarter);
