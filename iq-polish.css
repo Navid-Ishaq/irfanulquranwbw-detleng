@@ -1,0 +1,87 @@
+/* Irfan-ul-Quran UI polish — presentation layer only, separate from original engine. */
+:root{--iq-reading-size:28px}
+/* Sticky header with anchor-safe scrolling and unobstructed dialogs. */
+.site-header.iq-header{position:sticky;top:10px;z-index:35;margin-top:12px;max-width:1420px;box-shadow:0 9px 35px rgba(14,57,46,.10)}
+#home,#intro,#learn,#workspace,#motivation,#privacy,#purpose,#guide,#how{scroll-margin-top:128px}
+body.iq-stage-selection #learn,body.iq-stage-groups #workspace,body.iq-stage-practice #workspace{scroll-margin-top:132px}
+.iq-quarter-dialog,.coming-soon-dialog{z-index:200}
+/* Accessible, focused reading controls. */
+.iq-reading-bar{display:flex;justify-content:center;align-items:center;gap:12px;max-width:720px;margin:20px auto 18px;padding:13px 20px;border:1px solid #d2e7d7;border-radius:15px;background:#eaf5ea;color:#184438;flex-wrap:wrap}
+.iq-reading-label{font-size:13px;font-weight:800;white-space:nowrap}
+.iq-reading-bar input[type=range]{width:clamp(95px,18vw,210px);accent-color:#0c8b75;cursor:pointer}
+.iq-reading-bar button{border:1px solid #d5e3dc;border-radius:10px;background:white;color:#153e34;font-weight:800;font-size:20px;min-width:36px;min-height:36px;cursor:pointer}
+.iq-reading-bar .iq-read-reset{font-size:12px;padding:0 11px}
+.iq-reading-bar output{font-size:14px;font-weight:800;min-width:43px;text-align:center;font-variant-numeric:tabular-nums}
+/* Arabic verse takes priority over the academic reference; retain original text in JS state. */
+body.iq-stage-practice .question-text.iq-question-display{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;line-height:1.8;margin:7px 0 6px;overflow-wrap:anywhere}
+body.iq-stage-practice .iq-arabic-verse{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:clamp(18px,var(--iq-reading-size),40px);font-weight:650;line-height:1.95;max-width:100%;unicode-bidi:plaintext;white-space:normal}
+body.iq-stage-practice .iq-verse-reference{font:700 12px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:.035em;color:#52796b;background:#e5f2e7;border-radius:7px;padding:4px 8px;overflow-wrap:anywhere}
+/* Options: A/B/C anchored left; translated text centered, with independent RTL and LTR lines. */
+body.iq-stage-practice .options-list .option{display:grid;grid-template-columns:36px minmax(0,1fr);align-items:center;gap:12px;text-align:center;padding:14px 13px}
+body.iq-stage-practice .option-letter{display:grid;place-items:center;justify-self:start;align-self:center;text-align:center;width:36px;height:36px;font-size:17px}
+body.iq-stage-practice .iq-option-meaning,body.iq-stage-practice .iq-answer-meaning{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:8px;min-width:0;width:100%;text-align:center}
+body.iq-stage-practice .iq-translation-urdu{display:block;font-family:'Noto Nastaliq Urdu','Noto Naskh Arabic',serif;font-size:clamp(18px,var(--iq-reading-size),40px);font-weight:500;line-height:2.2;overflow-wrap:break-word;white-space:normal;text-align:center;unicode-bidi:plaintext}
+body.iq-stage-practice .iq-translation-english{display:block;font-family:'DM Sans',Arial,sans-serif;font-size:clamp(18px,calc(var(--iq-reading-size) * .83),36px);font-weight:450;line-height:1.65;overflow-wrap:break-word;white-space:normal;text-align:center}
+body.iq-stage-practice .iq-bilingual-content .iq-translation-english{padding-top:8px;border-top:1px solid #e5eee7}
+body.iq-stage-practice .answer-value{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;font-size:inherit!important}
+body.iq-stage-practice .iq-answer-letter{font-size:14px;color:#3c7660;font-weight:750}
+body.iq-stage-practice .answer-main{width:100%;max-width:100%;overflow-wrap:anywhere}
+/* Motivation is learner-centered, with a full soft Urdu translation. */
+.iq-motivation{background:#edf5ef;border-block:1px solid #d9e7db;padding:80px 0}
+.iq-motivation-inner{max-width:1080px;text-align:center}
+.iq-motivation h2{font:400 clamp(32px,4.4vw,54px)/1.16 'DM Serif Display',Georgia,serif;color:#16463a;margin:8px 0 16px}
+.iq-motivation-lead{font-size:clamp(17px,2vw,22px);font-weight:600;color:#335e51}
+.iq-motivation-urdu-lead{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(20px,2.8vw,30px);line-height:2.3;color:#126b58}
+.iq-motivation-switch{display:flex;justify-content:center;gap:8px;margin:26px auto}
+.iq-motivation-lang{border:1px solid #bcd7c7;border-radius:13px;padding:12px 26px;min-width:120px;background:white;color:#154336;font-weight:800}
+.iq-motivation-lang.active{background:#153f34;color:#fff;border-color:#153f34}
+.iq-motivation-copy{text-align:start;max-width:960px;margin:auto}
+.iq-motivation-copy[hidden]{display:none!important}
+.iq-motivation-copy h3{font-size:clamp(24px,3.1vw,35px);line-height:1.55;color:#16473c;margin:32px 0 20px}
+.iq-motivation-copy p{font-size:18px;line-height:1.9;color:#335c50}
+.iq-motivation-copy[lang=ur]{font-family:'Noto Nastaliq Urdu','Noto Naskh Arabic',serif}
+.iq-motivation-copy[lang=ur] h3{font-size:clamp(23px,2.7vw,30px);line-height:2.25}
+.iq-motivation-copy[lang=ur] p{font-size:clamp(19px,2vw,23px);line-height:2.55}
+.iq-motivation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:30px 0}
+.iq-motivation-grid article{background:white;border:1px solid #d7e6db;border-radius:18px;padding:24px}
+.iq-motivation-grid h4{font-size:21px;color:#155244;margin:0 0 8px}
+.iq-motivation-copy[lang=ur] .iq-motivation-grid h4{font-size:23px;line-height:2}
+.iq-motivation-grid p{font-size:16px;line-height:1.8;margin:0}
+.iq-motivation-copy[lang=ur] .iq-motivation-grid p{font-size:19px;line-height:2.2}
+.iq-motivation-closer{font-weight:800;text-align:center;color:#0c7964!important}
+.iq-motivation-footer{font-size:13px;color:#5c786d;margin-top:40px}
+/* Video Guide page, with visible video first and written guide below. */
+.iq-guide-page{padding-block:40px 90px;max-width:1180px}
+.iq-guide-page>h1{font:400 clamp(42px,6vw,74px)/1.1 'DM Serif Display',Georgia,serif;text-align:center;color:#153e34;margin:8px 0}
+.iq-guide-page>.eyebrow,.iq-guide-page>.iq-guide-subtitle{text-align:center}
+.iq-guide-subtitle{color:#4d7266;font-size:18px}
+.iq-video-panel{background:#143f34;border-radius:25px;padding:24px;max-width:950px;margin:30px auto 58px;color:#fff}
+.iq-video-ratio{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:#225346;border-radius:17px;text-align:center;padding:24px;overflow:hidden}
+.iq-video-ratio iframe{width:100%;height:100%;border:0}
+.iq-video-ratio h2{font-size:clamp(22px,3vw,34px);margin:0;color:white}
+.iq-video-ratio p{color:#d4e8dc;margin:0}
+.iq-video-ratio .iq-play{font-size:55px;line-height:1}
+.iq-video-outbound{color:#eaf9ee;text-decoration:underline;display:inline-block;margin:16px 0 0}
+.iq-guide-steps-layout{display:grid;grid-template-columns:minmax(210px,.7fr) minmax(0,1.3fr);gap:18px;margin:30px auto}
+.iq-guide-step-buttons{display:flex;flex-direction:column;gap:8px}
+.iq-guide-step-buttons button{background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:13px;padding:15px;text-align:left;font-weight:750}
+.iq-guide-step-buttons button.active{background:#e5f4e9;border-color:#0b8a71;color:#174d3e}
+.iq-guide-step-body{border:1px solid var(--border);border-radius:18px;background:var(--panel);padding:clamp(20px,3vw,36px);min-height:260px}
+.iq-guide-step-body h3{font:400 32px/1.25 'DM Serif Display',Georgia,serif;color:#195745}
+.iq-guide-step-body p{line-height:1.8;color:var(--muted)}
+.iq-guide-controls{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.iq-guide-controls button{background:#164a3c;color:#fff;border:0;border-radius:11px;padding:10px 18px;font-weight:750}
+.iq-guide-controls button:disabled{opacity:.4}
+.iq-reading-bar button:focus-visible,.iq-motivation-lang:focus-visible,.iq-guide-step-buttons button:focus-visible{outline:3px solid #dc9856;outline-offset:2px}
+body.dark .iq-motivation{background:#132d25}
+body.dark .iq-motivation h2,body.dark .iq-motivation-copy h3,body.dark .iq-motivation-grid h4,body.dark .iq-guide-page>h1,body.dark .iq-guide-step-body h3{color:#e6f5e8}
+body.dark .iq-motivation-lead,body.dark .iq-motivation-copy p,body.dark .iq-motivation-urdu-lead{color:#c9e2d4}
+body.dark .iq-motivation-grid article,body.dark .iq-motivation-lang:not(.active){background:#1d3b30;color:#eaf7ee;border-color:#426451}
+body.dark .iq-reading-bar{background:#1f4437;border-color:#4a6856;color:#e4f6e9}
+body.dark .iq-verse-reference{color:#d4ebdb;background:#2f5844}
+body.dark .iq-bilingual-content .iq-translation-english{border-color:#486956}
+body.dark .iq-guide-page .iq-guide-subtitle{color:#cce6d9}
+body.dark .iq-guide-step-buttons button.active{background:#245c46;color:#e6f8e9}
+@media(max-width:700px){.iq-motivation-grid{grid-template-columns:1fr}.iq-guide-steps-layout{grid-template-columns:1fr}.iq-reading-bar{gap:8px;padding:10px}.iq-reading-bar input[type=range]{flex:1;min-width:85px}.iq-motivation{padding-block:50px}.iq-option-meaning{max-width:100%}}
+/* Hide only the document filename from the learner-facing quarter selection. Internal id stays intact. */
+.iq-selected-file .iq-internal-filename{display:none!important}
