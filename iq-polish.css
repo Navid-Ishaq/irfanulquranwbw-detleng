@@ -85,3 +85,12 @@ body.dark .iq-guide-step-buttons button.active{background:#245c46;color:#e6f8e9}
 @media(max-width:700px){.iq-motivation-grid{grid-template-columns:1fr}.iq-guide-steps-layout{grid-template-columns:1fr}.iq-reading-bar{gap:8px;padding:10px}.iq-reading-bar input[type=range]{flex:1;min-width:85px}.iq-motivation{padding-block:50px}.iq-option-meaning{max-width:100%}}
 /* Hide only the document filename from the learner-facing quarter selection. Internal id stays intact. */
 .iq-selected-file .iq-internal-filename{display:none!important}
+
+/* Arabic verse marker: visual left only, never translations */
+body.iq-stage-practice .iq-arabic-verse::after {
+    content: " ○";
+    font-size: 0.65em;
+    font-weight: 400;
+    color: #52796b;
+    unicode-bidi: isolate;
+}
