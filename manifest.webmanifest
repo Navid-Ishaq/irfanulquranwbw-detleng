@@ -1,0 +1,32 @@
+{
+  "name": "Irfan-ul-Quran — Verse-by-Verse Learning",
+  "short_name": "Irfan-ul-Quran",
+  "description": "Verse-by-verse Qur'anic learning with Urdu and English meanings, flashcards and MCQs. An independent DeTLeng educational initiative.",
+  "lang": "en",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f7f1",
+  "theme_color": "#123e34",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

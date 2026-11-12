@@ -1,0 +1,20 @@
+/* Irfan-ul-Quran PWA — presentation only; study engine stays unchanged. */
+.iq-pwa-hero{display:flex;flex-direction:column;align-items:center;gap:10px;margin:24px auto 12px;text-align:center;padding:0 12px}
+.iq-pwa-glow{display:inline-flex;justify-content:center;align-items:center;min-height:54px;min-width:196px;padding:13px 28px;border:1px solid #d3b366;border-radius:999px;background:linear-gradient(135deg,#124a3b,#0e7357);color:#fff;font:700 17px/1.3 inherit;font-size:17px;font-weight:750;cursor:pointer;box-shadow:0 0 16px rgba(214,170,68,.25);animation:iqPwaGlow 2.8s ease-in-out infinite;transition:transform .18s ease,background .18s ease}
+.iq-pwa-glow:hover{transform:translateY(-2px) scale(1.035);background:#0c614a}
+.iq-pwa-note{margin:0;font-size:13px;line-height:1.55;color:#537366}
+@keyframes iqPwaGlow{0%,100%{box-shadow:0 0 10px rgba(214,170,68,.20)}50%{box-shadow:0 0 20px rgba(220,176,72,.53),0 0 34px rgba(26,138,98,.22)}}
+.iq-pwa-section{padding:15px 0 26px;scroll-margin-top:120px}
+.iq-pwa-panel{display:flex;align-items:center;gap:22px;border:1px solid #cce3d4;border-radius:22px;padding:20px 25px;background:linear-gradient(110deg,#eff8ef,#fffdf6);box-shadow:0 8px 24px rgba(16,63,48,.07)}
+.iq-pwa-icon{display:block;width:102px;height:102px;flex:0 0 102px;object-fit:cover;border-radius:22px;box-shadow:0 8px 20px #173f362b}
+.iq-pwa-copy{flex:1;min-width:170px}.iq-pwa-copy .eyebrow{margin:0 0 6px}.iq-pwa-copy h2{font-size:clamp(20px,2.5vw,28px);line-height:1.2;color:#173e34;margin:0 0 7px}.iq-pwa-copy p:last-child{font-size:15px;line-height:1.55;color:#496a5c;margin:0}
+.iq-pwa-actions{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:155px}
+.iq-pwa-card-button{background:#154838;color:white;border:0;border-radius:999px;padding:12px 22px;min-height:48px;font-family:inherit;font-size:15px;font-weight:750;white-space:nowrap;cursor:pointer;box-shadow:0 5px 16px #173e3425}
+.iq-pwa-card-button:hover{background:#0e6a51}.iq-pwa-small{font-size:12px;color:#55766b;text-align:center}
+.iq-pwa-glow:focus-visible,.iq-pwa-card-button:focus-visible,.iq-pwa-close:focus-visible{outline:3px solid #cda348;outline-offset:4px}
+.iq-pwa-dialog{border:0;border-radius:18px;padding:26px;max-width:min(92vw,480px);width:100%;background:#fff;color:#153f32;box-shadow:0 30px 80px #0004}
+.iq-pwa-dialog::backdrop{background:rgba(8,35,28,.65)}.iq-pwa-dialog h2{font-size:23px;margin:0 0 12px}.iq-pwa-dialog p{font-size:15px;line-height:1.7;margin:0}.iq-pwa-close{display:block;margin:20px 0 0 auto;padding:11px 18px;background:#154838;color:#fff;border:0;border-radius:10px;font-weight:750;cursor:pointer}
+.iq-pwa-footer-link{display:inline-block;margin-top:10px;text-decoration:underline;text-underline-offset:4px;color:inherit}
+@media(max-width:720px){.iq-pwa-panel{flex-wrap:wrap;gap:13px;padding:17px}.iq-pwa-icon{width:82px;height:82px;flex-basis:82px;border-radius:17px}.iq-pwa-copy{flex-basis:calc(100% - 100px);min-width:0}.iq-pwa-actions{width:100%}.iq-pwa-card-button{width:100%}}
+@media(prefers-reduced-motion:reduce){.iq-pwa-glow{animation:none;transition:none}}
+body.dark .iq-pwa-panel,.dark .iq-pwa-panel{background:linear-gradient(120deg,#14362d,#1c4034);border-color:#426657}body.dark .iq-pwa-copy h2,.dark .iq-pwa-copy h2{color:#eaf7ee}body.dark .iq-pwa-copy p:last-child,body.dark .iq-pwa-note,body.dark .iq-pwa-small,.dark .iq-pwa-copy p:last-child,.dark .iq-pwa-note,.dark .iq-pwa-small{color:#d3e7da}body.dark .iq-pwa-dialog,.dark .iq-pwa-dialog{background:#1d352d;color:#eef8f2}
